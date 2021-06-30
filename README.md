@@ -43,9 +43,21 @@ print_r($endpoint->getPhoneNumbers());
 echo '<pre>';
 ```
 
+### config
+
+```dotenv
+KEY="loremIPsum"
+PASSWORD="verySecret"
+SENDER="JBlond"
+```
+
+- KEY = your API Key
+- PASSWORD = your API password
+- SENDER, = sender name that is displayed as send on the phone
+
 ### API Endpoints
 
-There are more endpoint to the offical API, but I did not require them.
+There are more endpoint to the official API, but I did not require them.
 Feel free to fork my repo add those and open a Pull Request.
 
 ## LICENSE
