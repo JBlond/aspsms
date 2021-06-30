@@ -42,7 +42,7 @@ class Endpoint
     /**
      * @param string $message
      * @param array $recipients
-     * @param string $when
+     * @param string $when Y-m-dTH:i:s or date("c", timestamt)
      * @return bool|string
      */
     public function sendSMS(string $message, array $recipients, string $when): bool|string
