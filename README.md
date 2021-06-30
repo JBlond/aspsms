@@ -7,6 +7,12 @@ I recommend to use *vlucas/phpdotenv* for reading the data.
 This library works with the new API https://webapi.aspsms.com/index.html that is 
 a lot faster than the old json interface.
 
+## install
+
+```bash
+composer require jblond/aspsms
+```
+
 ## Examples
 
 ```PHP
