@@ -1,0 +1,27 @@
+{
+  "name": "jblond/aspsms",
+  "type": "library",
+  "description": "ASP SMS API Client",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "JBlond",
+      "email": "leet31337@web.de"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "ext-curl": "*"
+  },
+  "require-dev": {
+    "vlucas/phpdotenv": "^5.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "jblond\\aspsms\\": "src"
+    }
+  },
+  "config": {
+    "classmap-authoritative": true
+  }
+}
