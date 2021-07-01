@@ -43,9 +43,17 @@ class Endpoint
      * @param string $message
      * @param array $recipients
      * @param string $when Y-m-dTH:i:s or date("c", timestamt)
+     * @param string $notifyUrl URL that will be called when a message is delivered instantly. The submitted TransactionReferenceNumber will added to the URL.
+     * @param string $notDeliveredUrl URL that will be connected when a message is not delivered. The submitted TransactionReferenceNumber will added to the URL.
      * @return bool|string
      */
-    public function sendSMS(string $message, array $recipients, string $when): bool|string
+    public function sendSMS(
+        string $message,
+        array $recipients,
+        string $when,
+        string $notifyUrl = '',
+        string $notDeliveredUrl = ''
+    ): bool|string
     {
 
         $who = [];
@@ -58,10 +66,13 @@ class Endpoint
             'DeferredDeliveryTime' => $when, //"2021-06-30T10:18:07.609Z",
             'MessageData' => $message,
             'Originator' => $_ENV['SENDER'],
-            //'URLDeliveryNotification' => '',
-            // 'URLNonDeliveryNotification' => ''
-
         ];
+        if ($notifyUrl !== '') {
+            $data['URLDeliveryNotification'] = $notifyUrl;
+        }
+        if ($notDeliveredUrl !== '') {
+            $data['URLNonDeliveryNotification'] = $notDeliveredUrl;
+        }
         return $this->client->post(
             $this->baseurl . '/ASPSMSSendSMS?UserKey=' . $_ENV['KEY'] . '&Password=' . $_ENV['PASSWORD'],
             $data
