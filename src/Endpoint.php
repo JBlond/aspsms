@@ -22,6 +22,21 @@ class Endpoint
     protected string $baseurl = 'https://webapi.aspsms.com';
 
     /**
+     * @var string
+     */
+    private string $userKey;
+
+    /**
+     * @var string
+     */
+    private string $password;
+
+    /**
+     * @var string
+     */
+    private string $sender;
+
+    /**
      * Endpoint constructor.
      */
     public function __construct()
@@ -30,12 +45,24 @@ class Endpoint
     }
 
     /**
+     * @param string $userKey
+     * @param string $password
+     * @param string $sender
+     */
+    public function setCredentials(string $userKey, string $password, string $sender): void
+    {
+        $this->userKey = $userKey;
+        $this->password = $password;
+        $this->sender = $sender;
+    }
+
+    /**
      * @return bool|string
      */
     public function getCredits(): bool|string
     {
         return $this->client->get(
-            $this->baseurl . '/ASPSMSCredits?UserKey=' . $_ENV['KEY'] . '&Password=' . $_ENV['PASSWORD']
+            $this->baseurl . '/ASPSMSCredits?UserKey=' . $this->userKey . '&Password=' . $this->password
         );
     }
 
@@ -65,7 +92,7 @@ class Endpoint
             'Recipients' => $who,
             'DeferredDeliveryTime' => $when, //"2021-06-30T10:18:07.609Z",
             'MessageData' => $message,
-            'Originator' => $_ENV['SENDER'],
+            'Originator' => $this->sender,
         ];
         if ($notifyUrl !== '') {
             $data['URLDeliveryNotification'] = $notifyUrl;
@@ -74,7 +101,7 @@ class Endpoint
             $data['URLNonDeliveryNotification'] = $notDeliveredUrl;
         }
         return $this->client->post(
-            $this->baseurl . '/ASPSMSSendSMS?UserKey=' . $_ENV['KEY'] . '&Password=' . $_ENV['PASSWORD'],
+            $this->baseurl . '/ASPSMSSendSMS?UserKey=' . $this->userKey . '&Password=' . $this->password,
             $data
         );
     }
@@ -86,7 +113,7 @@ class Endpoint
     {
         return json_decode($this->client->get(
             $this->baseurl .
-            '/TrafficStat01/Get?UserKey=' . $_ENV['KEY'] . '&Password=' . $_ENV['PASSWORD'] . '&CalculateCredits=true'
+            '/TrafficStat01/Get?UserKey=' . $this->userKey . '&Password=' . $this->password . '&CalculateCredits=true'
         ), true);
     }
 
@@ -110,7 +137,7 @@ class Endpoint
         }
         return json_decode($this->client->get(
             $this->baseurl .
-            '/SendingStat01/Get?UserKey=' . $_ENV['KEY'] . '&Password=' . $_ENV['PASSWORD'] . $url
+            '/SendingStat01/Get?UserKey=' . $this->userKey . '&Password=' . $this->password . $url
         ), true);
     }
 
@@ -121,7 +148,7 @@ class Endpoint
     {
         return json_decode($this->client->get(
             $this->baseurl .
-            '/MSISDNDLRStat/Get?UserKey=' . $_ENV['KEY'] . '&Password=' . $_ENV['PASSWORD']
+            '/MSISDNDLRStat/Get?UserKey=' . $this->userKey . '&Password=' . $this->password
         ), true);
     }
 
@@ -131,7 +158,7 @@ class Endpoint
     public function getPhoneNumbers(): mixed
     {
         return json_decode($this->client->get(
-            $this->baseurl . '/PhoneNumbers/Read?UserKey=' . $_ENV['KEY'] . '&Password=' . $_ENV['PASSWORD']
+            $this->baseurl . '/PhoneNumbers/Read?UserKey=' . $this->userKey . '&Password=' . $this->password
         ), true);
     }
 }

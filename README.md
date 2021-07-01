@@ -27,6 +27,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 $endpoint = new Endpoint();
+$endpoint->setCredentials($_ENV['KEY'], $_ENV['PASSWORD'], $_ENV['SENDER']);
 
 print_r($endpoint->getCredits());
 

@@ -13,6 +13,9 @@
     "php": ">=8.0",
     "ext-curl": "*"
   },
+  "suggest": {
+    "vlucas/phpdotenv": "^5.3"
+  },
   "require-dev": {
     "vlucas/phpdotenv": "^5.3"
   },
