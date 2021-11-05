@@ -31,7 +31,7 @@ $endpoint->setCredentials($_ENV['KEY'], $_ENV['PASSWORD'], $_ENV['SENDER']);
 
 print_r($endpoint->getCredits());
 
-print_r($endpoint->sendSMS('Hello You! :)', ['+49555666777'], '2021-06-30T15:20:00+02:00'));
+var_dump($endpoint->sendSMS('Hello You! :)', ['+49555666777'], '2021-06-30T15:20:00+02:00'));
 
 echo '<pre>';
 print_r($endpoint->getTrafficStat());
@@ -51,13 +51,15 @@ echo '<pre>';
 ```
 
 
-sendSMS correct format is date("c")
+sendSMS correct format is Y-m-dTH:i:sP or date("c")
 
 e.g.
 
 ```php
 $timestamp = date("c", strtotime("+30 seconds"))
 ```
+
+see [php dateformat](https://www.php.net/manual/de/datetime.format.php)
 
 ### config
 
