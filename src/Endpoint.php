@@ -90,7 +90,7 @@ class Endpoint
         $data = [
             'Operation' => 'SendTextSMS',
             'Recipients' => $who,
-            'DeferredDeliveryTime' => $when, //"2021-06-30T10:18:07.609Z",
+            'DeferredDeliveryTime' => $when, //"2021-06-30T10:18:07+01:00",
             'MessageData' => $message,
             'Originator' => $this->sender,
         ];
