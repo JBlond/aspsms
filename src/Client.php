@@ -2,7 +2,6 @@
 
 namespace jblond\aspsms;
 
-
 use CurlHandle;
 
 class Client
@@ -44,10 +43,7 @@ class Client
     protected function analyseResponse(string $data): bool
     {
         $response = json_decode($data, true);
-        if ($response['errorCode'] === 1) {
-            return true;
-        }
-        return false;
+        return $response['errorCode'] === 1;
     }
 
     /**

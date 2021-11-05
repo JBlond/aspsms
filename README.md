@@ -22,7 +22,7 @@ use jblond\aspsms\Endpoint;
 
 require 'vendor/autoload.php';
 
-//load .env
+//load .env file
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
@@ -50,8 +50,18 @@ print_r($endpoint->getPhoneNumbers());
 echo '<pre>';
 ```
 
+
+sendSMS correct format is date("c")
+
+e.g.
+
+```php
+$timestamp = date("c", strtotime("+30 seconds"))
+```
+
 ### config
 
+.env
 ```dotenv
 KEY="loremIPsum"
 PASSWORD="verySecret"

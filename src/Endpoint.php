@@ -69,9 +69,9 @@ class Endpoint
     /**
      * @param string $message
      * @param array $recipients
-     * @param string $when Y-m-dTH:i:s or date("c", timestamt)
-     * @param string $notifyUrl URL that will be called when a message is delivered instantly. The submitted TransactionReferenceNumber will added to the URL.
-     * @param string $notDeliveredUrl URL that will be connected when a message is not delivered. The submitted TransactionReferenceNumber will added to the URL.
+     * @param string $when Y-m-dTH:i:s or date("c", timestamp)
+     * @param string $notifyUrl URL that will be called when a message is delivered instantly. The submitted TransactionReferenceNumber will be added to the URL.
+     * @param string $notDeliveredUrl URL that will be connected when a message is not delivered. The submitted TransactionReferenceNumber will be added to the URL.
      * @return bool|string
      */
     public function sendSMS(
