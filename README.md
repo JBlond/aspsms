@@ -41,6 +41,17 @@ echo '<pre>';
 print_r($endpoint->getSendingStat(2021, 6, 1));
 echo '</pre>';
 
+// get failed SMS
+echo '<pre>';
+$report = $endpoint->getSendingStat(date("Y", strtotime("Last month")), date("m", strtotime("Last month")));
+foreach ($report as $item){
+    if($item['dst'] === 0 || $item['msisdn'] === ''){
+        continue;
+    }
+    print_r($item)
+}
+echo '</pre>';
+
 echo '<pre>';
 print_r($endpoint->getStats());
 echo '</pre>';
